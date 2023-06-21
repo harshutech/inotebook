@@ -15,29 +15,23 @@ const AddNotes = () => {
         setnote({ ...note, [e.target.name]: e.target.value })
     }
     return (
-        <div className="container">
-            <h2>ADD NOTES</h2>
+        <div className="box my-4">
+            <h2>ADD NOTES 📝</h2>
             <form>
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
                     <input type="text" className="form-control" onChange={onchange}
                         id="title" name="title" aria-describedby="emailHelp"
-                        placeholder="Enter title here" />
-                </div>
+                        placeholder="Enter title here" required/>
+                </div><br/>
 
                 <div className="form-group">
-                    <label htmlFor="description">description</label>
+                    <label htmlFor="description">Description</label>
                     <input type="text" name='description' className="form-control" onChange={onchange}
-                        id="description" placeholder="Enter description here" />
-                </div>
-
-                <div className="form-group form-check">
-                    <label className="form-check-label" htmlFor="exampleCheck1">
-                        <input type="checkbox" className="form-check-input"
-                            id="exampleCheck1" />Remember me
-                    </label>
-                </div>
+                        id="description" placeholder="Enter description here" required/>
+                </div><br/>
                 <button type="submit" className="btn btn-primary" onClick={handleClick}>ADD NOTE</button>
+                <hr/>
             </form>
         </div>
     )

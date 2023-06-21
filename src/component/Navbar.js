@@ -4,10 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 export const Navbar = () => {
   let location = useLocation();
-  useEffect(() => {
-    console.log(location.pathname);
-
-  }, [location])
+  
 
   return (
     <>
@@ -20,7 +17,7 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item ">
-              <Link className={`nav-link ${location.pathname === "/" ? "active" : " "}`} to="/">Home</Link>
+              <Link className={`nav-link ${location.pathname === "/" ? "active" : " "}`} to="/">Home <i class="fa-solid fa-house" style={{color:' #ffffff'}}></i></Link>
             </li>
             <li className="nav-item">
               <Link className={`nav-link ${location.pathname === "/about" ? "active" : " "}`} to="/about">About</Link>

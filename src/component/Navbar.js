@@ -17,7 +17,7 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item ">
-              <Link className={`nav-link ${location.pathname === "/" ? "active" : " "}`} to="/">Home <i class="fa-solid fa-house" style={{color:' #ffffff'}}></i></Link>
+              <Link className={`nav-link ${location.pathname === "/" ? "active" : " "}`} to="/">Home <i className="fa-solid fa-house" style={{color:' #ffffff'}}></i></Link>
             </li>
             <li className="nav-item">
               <Link className={`nav-link ${location.pathname === "/about" ? "active" : " "}`} to="/about">About</Link>

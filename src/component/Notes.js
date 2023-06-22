@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef,useState } from 'react'
 import noteContext from '../context/notes/noteContext';
 import { NoteItem } from './NoteItem';
 import AddNotes from './AddNotes';
@@ -18,15 +18,19 @@ const Notes = () => {
     
     const updatenote = (currentNote) => {
         ref.current.click(); //used for showing modal if close or close if showing 
+         
+        setnote({eid: currentNote._id, etittle: currentNote.tittle, edescription : currentNote.description, etag: currentNote.tag});
     }
 
+    const [note, setnote] = useState({eid:"", etittle: "", edescription:"", etag: "default" })
+
     const handleClick = (e)=>{
-        // console.log("Updating the note...", note)
         e.preventDefault(); 
+        
     }
 
     const onChange = (e)=>{
-        // setNote({...note, [e.target.name]: e.target.value})
+        setnote({...note, [e.target.name]: e.target.value})
     }
     return (
         <>
@@ -42,23 +46,25 @@ const Notes = () => {
                             <h5 className="modal-title" id="exampleModalLabel">Edit Note</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        {/* <div className="modal-body">
+                        <div className="modal-body">
+
                             <form className="my-3">
                                 <div className="mb-3">
-                                    <label htmlFor="title" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="etitle" name="etitle" value={note.etitle} aria-describedby="emailHelp" onChange={onChange} />
+                                    <label htmlFor="title"className="form-label">Title</label>
+                                    <input type="text" className="form-control" id="etittle" name="etittle" value={note.etittle}aria-describedby="emailHelp" onChange={onChange} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="description" className="form-label">Description</label>
+                                    <label htmlFor="description" className="form-label"  >Description</label>
                                     <input type="text" className="form-control" id="edescription" name="edescription" value={note.edescription} onChange={onChange} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="tag" className="form-label">Tag</label>
+                                    <label htmlFor="tag" className="form-label"  >Tag</label>
                                     <input type="text" className="form-control" id="etag" name="etag" value={note.etag} onChange={onChange} />
                                 </div>
 
                             </form>
-                        </div> */}
+
+                        </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>

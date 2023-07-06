@@ -9,7 +9,7 @@ const NotesSchema = new Schema({
         ref:'user'
     },
     
-    tittle:{
+    title:{
         type:String,
         require:true
     },
@@ -19,7 +19,7 @@ const NotesSchema = new Schema({
         require:true,
     },
 
-    tittle:{
+    tag:{
         type:String,
         default:"General"
     },

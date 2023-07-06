@@ -19,18 +19,18 @@ const AddNotes = () => {
             <h2>ADD NOTES 📝</h2>
             <form>
                 <div className="form-group">
-                    <label htmlFor="title">Title</label>
+                    <label htmlFor="title">title</label>
                     <input type="text" className="form-control" onChange={onchange}
                         id="title" name="title" aria-describedby="emailHelp"
-                        placeholder="Enter title here" required/>
+                        placeholder="Enter title here" minLength={5} required/>
                 </div><br/>
 
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
                     <input type="text" name='description' className="form-control" onChange={onchange}
-                        id="description" placeholder="Enter description here" required/>
+                        id="description" placeholder="Enter description here"  minLength={5} required/>
                 </div><br/>
-                <button type="submit" className="btn btn-primary" onClick={handleClick}>ADD NOTE</button>
+                <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="btn btn-primary" onClick={handleClick} >ADD NOTE</button>
                 <hr/>
             </form>
         </div>

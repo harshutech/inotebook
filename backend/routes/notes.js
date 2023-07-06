@@ -21,12 +21,12 @@ router.get('/fetchallnotes', fetchuser, async (req, res) => {
 
 // ROUTE 2: Add a new notes using ; GET "/api/notes/addnote" ,login required
 router.post('/addnote', fetchuser, [
-    body('tittle', 'Enter a valid tittle').isLength({ min: 3 }),
+    body('title', 'Enter a valid title').isLength({ min: 3 }),
     body('description', 'description must be atleast 5 characters').isLength({ min: 5 }),
 ], async (req, res) => {
 
     try {
-        const { tittle, description, tag, } = req.body;
+        const { title, description, tag, } = req.body;
         // if there are errors return bad request
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -34,7 +34,7 @@ router.post('/addnote', fetchuser, [
         }
 
         const note = new Note({
-            tittle, description, tag, user: req.user.id
+            title, description, tag, user: req.user.id
         })
         const saveNote = await note.save();
         res.json(saveNote)
@@ -48,13 +48,13 @@ router.post('/addnote', fetchuser, [
 
 // ROUTE 3: update a  notes using ; GET "/api/notes/addnote" ,login required
 router.put('/updatenote/:id', fetchuser,async (req, res) => {
-    const{tittle,description,tag}=req.body;
+    const{title,description,tag}=req.body;
 
     try {
 
     // create a new note object
     const newnote ={};
-    if(tittle){newnote.tittle=tittle};
+    if(title){newnote.title=title};
     if(description){newnote.description=description};
     if(tag){newnote.tag=tag};
 
@@ -83,7 +83,9 @@ router.delete('/deletenote/:id', fetchuser,async (req, res) => {
 
     // find the note to be delete and delete it
     let note =await Note.findById(req.params.id);
-    if(!note){res.send(404).send("Not Found")}
+    if(!note){
+        res.status(404).send("Not Found")
+    }
 
     // allow deletion only if user owns this note
     if(note.user.toString()!== req.user.id){

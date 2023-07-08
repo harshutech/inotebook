@@ -20,7 +20,7 @@ const Login = () => {
       body: JSON.stringify({ email: credentials.email, password: credentials.password })
     });
     const json = await response.json();
-    console.log(json);
+   
     if (json.success) {
       // save the auth token into local storage and redirect
       localStorage.setItem('token', json.authtoken);
@@ -38,14 +38,14 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className='my-5'>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group my-3">
           <label htmlFor="email">Email address</label>
           <input type="email" className="form-control" id="email" onChange={onchange} value={credentials.email} name='email' placeholder="Enter email" />
           <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
-        <div className="form-group">
+        <div className="form-group my-3">
           <label htmlFor="password">Password</label>
           <input type="password" className="form-control" onChange={onchange} value={credentials.password} name='password' id="exampleInputPassword1" placeholder="Password" />
         </div>

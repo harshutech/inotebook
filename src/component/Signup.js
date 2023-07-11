@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
-const Signup = () => {
+const Signup = (props) => {
 
   const [credentials, setcredentials] = useState({name:"", email: "", password: "", cpassword:"" })
 
@@ -25,16 +25,15 @@ const Signup = () => {
       localStorage.setItem('token', json.authtoken);
       // used to redirect to home page 
       navigate('/');
+    props.showAlert("Successful signup","success")
+
     }
 
   else{
-    alert("Invalid credentials")
+    props.showAlert("Account with this email already exists","danger")
   }
     }
   
-  
-
-
   const onchange = (e) => {
     setcredentials({ ...credentials, [e.target.name]: e.target.value })
   }

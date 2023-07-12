@@ -40,6 +40,7 @@ const Signup = (props) => {
 
   return (
        <div className='container my-5'>
+        <h2>Create an account to use I-NoteBook</h2>
       <form onSubmit={handleSubmit}>
 
       <div className="form-group my-3">

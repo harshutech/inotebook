@@ -26,7 +26,6 @@ const Login = (props) => {
       localStorage.setItem('token', json.authtoken);
       // used to redirect to home page 
       navigate('/');
-      // to do add alert
       props.showAlert("successful login ","success")
     }
     else {
@@ -41,6 +40,7 @@ const Login = (props) => {
 
   return (
     <div className='my-5'>
+      <h2>Login to continue to I-NoteBook</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group my-3">
           <label htmlFor="email">Email address</label>
@@ -51,7 +51,7 @@ const Login = (props) => {
           <label htmlFor="password">Password</label>
           <input type="password" className="form-control" onChange={onchange} value={credentials.password} name='password' id="exampleInputPassword1" placeholder="Password" />
         </div>
-        <button type="submit" className="btn btn-primary" >Submit</button>
+        <button type="submit" className="btn btn-primary" >Login</button>
       </form>
     </div>
   )

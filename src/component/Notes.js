@@ -2,15 +2,23 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/notes/noteContext';
 import { NoteItem } from './NoteItem';
 import AddNotes from './AddNotes';
+import { useNavigate } from 'react-router-dom'
+
+
 
 const Notes = (props) => {
+    let navigate = useNavigate();
 
     const context = useContext(noteContext);
     const { notes, getnotes, editNote} = context;
-    useEffect(() => {
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
         getnotes();
-
-    },)
+    } else {
+        // do not try .push function that a old method here i applied latest method to redirect
+        navigate('/login');
+    }
+}, []);
 
     const ref = useRef(null); // seted initial value is null that means by deafault modal is closed 
     const refclose = useRef(null);

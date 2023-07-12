@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components'; // installed by npm install styled-components
+import { useNavigate } from 'react-router-dom'
+
+
 
 // Define a styled component for the navbar buttons login and signup
 const NavbarButtons = styled.div`
@@ -8,7 +11,16 @@ const NavbarButtons = styled.div`
 `;
 
 
+
+
 export const Navbar = () => {
+  let navigate = useNavigate();
+
+  const logout=()=>{
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
+
   let location = useLocation();
 
   return (
@@ -49,14 +61,18 @@ export const Navbar = () => {
             </li>
           </ul>
 
-          <NavbarButtons className="d-flex justify-content-end">
-            <Link className="btn btn-primary mx-2" to='/login' role='button' type="submit">
-              Login
-            </Link>
-            <Link className="btn btn-primary mx-2" to='/signup' role='button'  type="submit">
-              Signup
-            </Link>
-          </NavbarButtons>
+          {!localStorage.getItem('token') ?
+            <NavbarButtons className="d-flex justify-content-end">
+              <Link className="btn btn-primary mx-2" to='/login' role='button' type="submit">
+                Login
+              </Link>
+              <Link className="btn btn-primary mx-2" to='/signup' role='button' type="submit">
+                Signup
+              </Link>
+            </NavbarButtons>
+            : <NavbarButtons className="d-flex justify-content-end">  <button className="btn btn-primary mx-2" onClick={logout} type="submit">
+              logout
+            </button> </NavbarButtons>}
         </div>
       </div>
     </nav>
